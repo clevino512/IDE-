@@ -1,0 +1,119 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ide-bg: #0F1117;
+  --color-ide-surface: #161B22;
+  --color-ide-toolbar: #1C2128;
+  --color-ide-border: #30363D;
+  --color-ide-accent: #58A6FF;
+  --color-ide-green: #3FB950;
+  --color-ide-red: #F85149;
+  --color-ide-yellow: #D29922;
+  --color-ide-text: #E6EDF3;
+  --color-ide-muted: #8B949E;
+  --color-ide-linenum: #3D4450;
+
+  --font-mono: "Fira Code", Consolas, monospace;
+
+  --animation-fade-in: fade-in 200ms ease-in;
+  --animation-slide-up: slide-up 200ms ease-out;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-ide-border) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--color-ide-border);
+  border-radius: 3px;
+  border: 2px solid transparent;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-ide-accent);
+}
+
+body {
+  @apply bg-ide-bg text-ide-text font-mono overflow-hidden;
+  -webkit-app-region: no-drag;
+}
+
+@supports (font-feature-settings: "liga") {
+  code,
+  pre {
+    font-feature-settings: "liga" on;
+  }
+}
+
+.monaco-editor {
+  font-family: "Fira Code", Consolas, monospace !important;
+  font-feature-settings: "liga" on;
+}
+
+button {
+  @apply transition-all duration-150;
+}
+
+button:active {
+  @apply scale-95;
+}
+
+button:disabled {
+  @apply opacity-50 cursor-not-allowed;
+}
+
+.modal-backdrop {
+  animation: fade-in 200ms ease-in;
+}
+
+.modal {
+  animation: slide-up 200ms ease-out;
+}
+
+.terminal-enter {
+  animation: slide-up 200ms ease-out;
+}
+
+.animate-pulse-dot {
+  animation: pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
